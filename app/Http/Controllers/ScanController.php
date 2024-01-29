@@ -23,28 +23,22 @@ class ScanController extends Controller
     {
         $request->validate([
             'issueno' => 'required|string',
-            'quality' => 'required|integer',
+            'quality' => 'required|string',
             'partout' => 'required|string',
             'parttru' => 'required|string'
         ]);
 
-        // $this->validate($request,[
-        //     'issueno' => 'required|string',
-        //     'quality' => 'required|integer',
-        //     'partout' => 'required|string',
-        //     'parttru' => 'required|string',
-        // ]);
-
-        $duplicateIssueNumber =  NissanIssue::whereIn('issueno', (array)$request->input('issueno'))->where('check','Pass')->exists();
-        
-        
-        $partCheck = Part::whereIn('partnis',(array)$request->input('partout'))->where('parttru',(array)$request->input('parttru'))->exists();
+        $cleanedIssueno = substr($request->input('issueno'), 1);
+        $cleanedpartout = substr($request->input('partout'), 1);
+        $cleanedQuality = (int) preg_replace('/[^\d]/', '', $request->input('quality'));
+        $duplicateIssueNumber =  NissanIssue::whereIn('issueno', (array) $cleanedIssueno)->where('check','Pass')->exists();
+        $partCheck = Part::whereIn('partnis',(array)$cleanedpartout)->where('parttru',(array)$request->input('parttru'))->exists();
 
         if ($duplicateIssueNumber && !$partCheck){
             NissanIssue::create([
-                'issueno' => $request->input('issueno'),
-                'quality' => $request->input('quality'),
-                'partout' => $request->input('partout'),
+                'issueno' => $cleanedIssueno,
+                'quality' => $cleanedQuality,
+                'partout' => $cleanedpartout,
                 'parttru' => $request->input('parttru'),
                 'check' => 'PaIs',
                 'user_id' => auth()->id(),
@@ -57,9 +51,9 @@ class ScanController extends Controller
         }
         elseif ($duplicateIssueNumber){
             NissanIssue::create([
-                'issueno' => $request->input('issueno'),
-                'quality' => $request->input('quality'),
-                'partout' => $request->input('partout'),
+                'issueno' => $cleanedIssueno,
+                'quality' => $cleanedQuality,
+                'partout' => $cleanedpartout,
                 'parttru' => $request->input('parttru'),
                 'check' => 'Issue',
                 'user_id' => auth()->id(),
@@ -73,9 +67,9 @@ class ScanController extends Controller
         }
         elseif (!$partCheck){
             NissanIssue::create([
-                'issueno' => $request->input('issueno'),
-                'quality' => $request->input('quality'),
-                'partout' => $request->input('partout'),
+                'issueno' => $cleanedIssueno,
+                'quality' => $cleanedQuality,
+                'partout' => $cleanedpartout,
                 'parttru' => $request->input('parttru'),
                 'check' => 'Part',
                 'user_id' => auth()->id(),
@@ -88,9 +82,9 @@ class ScanController extends Controller
         }
         else{
             NissanIssue::create([
-                'issueno' => $request->input('issueno'),
-                'quality' => $request->input('quality'),
-                'partout' => $request->input('partout'),
+                'issueno' => $cleanedIssueno,
+                'quality' => $cleanedQuality,
+                'partout' => $cleanedpartout,
                 'parttru' => $request->input('parttru'),
                 'check' => 'Pass',
                 'user_id' => auth()->id(),

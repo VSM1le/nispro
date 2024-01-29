@@ -66,7 +66,7 @@
     </div>
 </div>
 
-<div class="md:hidden">
+<div class="md:hidden lg:hidden">
     @include('scanner.crudScanner.submit-issue-mobile')
 </div>
 

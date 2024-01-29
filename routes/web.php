@@ -63,15 +63,11 @@ Route::middleware(['auth','role:commoner'])->group(function(){
     Route::put('/commoner/unlock',[CommonerController::class,'update'])->name('unlockU');
 });
 
-// Route::middleware(['auth','role:pladmin'])->group(function(){
-//     Route::get('/History',[PladminController::class, 'index'])->name('history');
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 
 require __DIR__.'/auth.php';
