@@ -19,7 +19,7 @@ class AddpartController extends Controller
         $request->validate([
             'type' => 'required|string',
             'partout' => 'required|string|unique:parts,partnis',
-            'parttru' => 'required|string|unique:parts,parttru',
+            'parttru' => 'required|string',
             'partname' => 'required|string',
             'snp' => 'required|integer',
         ]);
