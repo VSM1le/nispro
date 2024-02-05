@@ -16,7 +16,7 @@
             </div>
             <div>
                 <div>
-                    <h1>จำนวน (quality)</h1>
+                    <h1>จำนวน (quantity)</h1>
                 </div>
             <input type="text" name="quality" class="barcode-input border border-slate-300 rounded-lg">
             @error('quality')

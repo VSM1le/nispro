@@ -69,8 +69,4 @@
 <div class="md:hidden lg:hidden">
     @include('scanner.crudScanner.submit-issue-mobile')
 </div>
-
-
 </x-app-layout>
-
-

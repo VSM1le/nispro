@@ -13,7 +13,7 @@
                 <input type="text" name="issueno" id="issueno" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" autofocus>
             </div>
             <div>
-                <label for="quality" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">จำนวน (quality)</label>
+                <label for="quality" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">จำนวน (quantity)</label>
                 @error('quality')
                 <div>
                 <span class="text-red-500 text-xs">{{ $message }}</span>

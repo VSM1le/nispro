@@ -15,7 +15,7 @@
             </div>
             <div>
                 <div>
-                <label for="partout">Part out side</label>
+                <label for="partout">Part outside</label>
                 </div>             
                 <input type="text" name="partout" class="border border-slate-300 rounded-lg">
                 @error('partout')

@@ -47,6 +47,7 @@ Route::middleware(['auth','role:superAdmin|plAdmin'])->group(function(){
     Route::get('/part',[AddpartController::class, 'index'])->name('addpart');
     Route::post('/part/postpart',[AddpartController::class,'store'])->name('submmitpart');
     Route::get('/History',[PladminController::class, 'index'])->name('history');
+    Route::post('/History/export',[PladminController::class, 'export'])->name('history.export');
 });
 
 
