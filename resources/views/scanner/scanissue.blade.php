@@ -14,7 +14,7 @@
                                 Part Out
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Quality
+                                Quantity
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Part Tru

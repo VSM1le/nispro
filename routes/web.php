@@ -5,7 +5,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScanController;
 use App\Http\Controllers\CommonerController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\PladminController;
+use App\Http\Controllers\UserlistController;
 use App\Models\NissanIssue;
 use Illuminate\Support\Facades\Route;
 
@@ -48,15 +50,20 @@ Route::middleware(['auth','role:superAdmin|plAdmin'])->group(function(){
     Route::post('/part/postpart',[AddpartController::class,'store'])->name('submmitpart');
     Route::get('/History',[PladminController::class, 'index'])->name('history');
     Route::post('/History/export',[PladminController::class, 'export'])->name('history.export');
+    Route::get('something',[ParentController::class, 'index'])->name('something');    
 });
 
 
 
 
-Route::get('/superadmin', function () {
-    return view('superadmin.index');
-})->middleware(['auth','role:superAdmin'])->name('superadmin.index');
+// Route::get('/superadmin', function () {
+//     return view('superadmin.index');
+// })->middleware(['auth','role:superAdmin'])->name('superadmin.index');
 // 'verifield'
+
+Route::middleware(['auth' , 'role:superAdmin'])->group(function(){
+    Route::match(['get','post'] , '/superadmin',[UserlistController::class, 'index'])->name('superadmin.index');
+});
 
 
 Route::middleware(['auth','role:commoner'])->group(function(){

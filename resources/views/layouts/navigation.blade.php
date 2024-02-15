@@ -25,19 +25,26 @@
                         {{ __('Scanner') }}
                     </x-nav-link>
                     @endrole
-                    @role('superAdmin')
-                    <x-nav-link :href="route('superadmin.index')" :active="request()->routeIs('superadmin.index')">
-                        {{ __('Super Admin') }}
-                    </x-nav-link>
-                    @endrole
+                    
                     @role(['superAdmin','plAdmin'])
                     <x-nav-link :href="route('addpart')" :active="request()->routeIs('addpart')">
                         {{ __('AddPart') }}
                     </x-nav-link>
                     @endrole
                     @role(['superAdmin','plAdmin'])
+                    <x-nav-link :href="route('something')" :active="request()->routeIs('something')">
+                        {{ __('Something') }}
+                    </x-nav-link>
+                    @endrole
+                  
+                    @role(['superAdmin','plAdmin'])
                     <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
                         {{ __('History') }}
+                    </x-nav-link>
+                    @endrole
+                    @role('superAdmin')
+                    <x-nav-link :href="route('superadmin.index')" :active="request()->routeIs('superadmin.index')">
+                        {{ __('Super Admin') }}
                     </x-nav-link>
                     @endrole
                 </div>
